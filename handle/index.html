@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mitul Verma — Platform Engineer</title>
+<meta name="description" content="Turning chaos into beautiful developer experiences.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #1A2238;
+    --ink-soft:   #4A5573;
+    --paper:      #F5F3EE;
+    --white:      #FFFFFF;
+    --signal:     #E0A32E;
+    --sage:       #7A9E7E;
+    --line:       rgba(26,34,56,.14);
+
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body:    "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --pad: clamp(22px, 6vw, 56px);
+    --max: 620px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{ max-width:var(--max); margin:0 auto; background:var(--white); min-height:100vh; }
+
+  a{ color:inherit; }
+
+  :focus-visible{ outline:3px solid var(--signal); outline-offset:3px; border-radius:2px; }
+
+  .lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:calc(var(--pad) + 14px) var(--pad) var(--pad);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .lbl{ color:rgba(245,243,238,.55); }
+
+  /* the scan beam — a nod to how people arrive here */
+  .beam{
+    position:absolute; left:0; right:0; top:-3px; height:3px;
+    background:linear-gradient(90deg, transparent, var(--signal), transparent);
+    animation:sweep 1.5s cubic-bezier(.4,0,.2,1) .15s 1 forwards;
+    pointer-events:none;
+  }
+  @keyframes sweep{
+    0%   { top:-3px;  opacity:0; }
+    12%  { opacity:1; }
+    88%  { opacity:1; }
+    100% { top:100%;  opacity:0; }
+  }
+
+  /* Monogram — stands in for a photo. No image file needed. */
+  .badge{
+    width:78px; height:78px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--signal);
+    background:rgba(224,163,46,.10);
+    font-family:var(--display); font-weight:800; font-size:27px;
+    letter-spacing:-.02em; color:var(--signal);
+    margin-bottom:22px;
+  }
+
+  /* Kept for later: if you ever add a square photo.jpg, swap the
+     .badge div in the HTML for <img class="avatar" src="photo.jpg" alt="Mitul Verma"> */
+  .avatar{
+    width:78px; height:78px; border-radius:50%;
+    object-fit:cover; display:block;
+    border:2px solid var(--signal);
+    background:var(--ink-soft);
+    margin-bottom:22px;
+  }
+
+  .name{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(42px, 13vw, 68px);
+    line-height:.94;
+    letter-spacing:-.035em;
+    margin:10px 0 0;
+  }
+  .rule{ width:56px; height:3px; background:var(--signal); margin:20px 0 16px; border:0; }
+
+  .role{ font-size:16px; color:rgba(245,243,238,.78); max-width:34ch; }
+  .role em{ font-style:normal; color:var(--signal); }
+
+  .save{
+    display:inline-flex; align-items:center; gap:9px;
+    margin-top:26px; padding:14px 22px;
+    background:var(--signal); color:var(--ink);
+    font-family:var(--body); font-weight:500; font-size:15px;
+    border:0; border-radius:999px; cursor:pointer;
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .save:hover{ filter:brightness(1.07); transform:translateY(-1px); }
+  .save:active{ transform:translateY(0); }
+  .save svg{ width:16px; height:16px; }
+
+  /* ---------- SECTIONS ---------- */
+  .sec{ padding:var(--pad); border-bottom:1px solid var(--line); }
+  .sec:last-of-type{ border-bottom:0; }
+  .sec p + p{ margin-top:1em; }
+  .sec .lbl{ display:block; margin-bottom:16px; }
+
+  .tags{ display:flex; flex-wrap:wrap; gap:9px; list-style:none; }
+  .tags li{
+    font-family:var(--mono); font-size:12px; letter-spacing:.03em;
+    padding:7px 13px; border-radius:999px;
+    background:rgba(122,158,126,.14); color:#41603F;
+  }
+
+  .links{ list-style:none; }
+  .links li{ border-top:1px solid var(--line); }
+  .links li:first-child{ border-top:0; }
+  .links a{
+    display:flex; align-items:baseline; gap:14px;
+    padding:17px 2px; text-decoration:none;
+    transition:padding-left .18s ease;
+  }
+  .links a:hover{ padding-left:8px; }
+  .links a:hover .where{ color:var(--signal); }
+  .links .what{ font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+                text-transform:uppercase; color:var(--ink-soft); width:82px; flex:none; }
+  .links .where{ font-weight:500; transition:color .18s ease; word-break:break-word; }
+  .links .arrow{ margin-left:auto; color:var(--ink-soft); }
+
+  footer{ padding:var(--pad); background:var(--paper); }
+  footer .lbl{ font-size:10px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .beam{ display:none; }
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="beam"></div>
+
+    <div class="badge" aria-hidden="true">MV</div>
+
+    <span class="lbl">Hello — you scanned my code</span>
+
+    <h1 class="name">Mitul<br>Verma</h1>
+
+    <hr class="rule">
+
+    <p class="role">Platform engineer at <em>Lilly</em>. Turning chaos into beautiful developer experiences.</p>
+
+    <button class="save" id="saveBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+      Save to contacts
+    </button>
+  </header>
+
+  <section class="sec">
+    <span class="lbl">About</span>
+    <p>Working in Rdata as a platform engineer. We are Building platform that make it easier for teams to manage, organise and access there data efficienty and securely. I work on creating simple, scalable experiences that help teams get the right information when they need it, while ensuring data is well governed and realiable.</p>
+    <p>If you're struggling with your data, or looking for better ways to make it more accessible and useful, feel free to reach out. Happy to connect.</p>
+  </section>
+
+  <section class="sec">
+    <span class="lbl">What I work on</span>
+    <ul class="tags">
+      <li>Pipeline Orchestration</li>
+      <li>Observability</li>
+      <li>Data Governance</li>
+      <li>AI Workflows</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <span class="lbl">Find me</span>
+    <ul class="links">
+      <li><a href="mailto:verma_mitul@lilly.com">
+        <span class="what">Email</span><span class="where">verma_mitul@lilly.com</span><span class="arrow">↗</span></a></li>
+
+      <!-- To add LinkedIn: delete this comment wrapper and put your real handle in both places.
+      <li><a href="https://linkedin.com/in/YOUR-HANDLE">
+        <span class="what">LinkedIn</span><span class="where">/YOUR-HANDLE</span><span class="arrow">↗</span></a></li>
+      -->
+    </ul>
+  </section>
+
+  <footer>
+    <span class="lbl">Last updated August 2026</span>
+  </footer>
+
+</div>
+
+<script>
+const CONTACT = {
+  firstName: "Mitul",
+  lastName:  "Verma",
+  title:     "Platform Engineer",
+  company:   "Eli Lilly and Company",
+  email:     "verma_mitul@lilly.com",
+  phone:     "",                        // add your number here if you want it shared
+  website:   "",                        // put your live page URL here once GitHub Pages is up
+  linkedin:  "",                        // e.g. "https://linkedin.com/in/your-handle"
+  note:      "We met by QR code."
+};
+
+document.getElementById("saveBtn").addEventListener("click", () => {
+  const full = [CONTACT.firstName, CONTACT.lastName].filter(Boolean).join(" ");
+  const rows = ["BEGIN:VCARD", "VERSION:3.0"];
+
+  rows.push(`N:${CONTACT.lastName};${CONTACT.firstName};;;`);
+  rows.push(`FN:${full}`);
+  if (CONTACT.company)  rows.push(`ORG:${CONTACT.company}`);
+  if (CONTACT.title)    rows.push(`TITLE:${CONTACT.title}`);
+  if (CONTACT.email)    rows.push(`EMAIL;TYPE=INTERNET,WORK:${CONTACT.email}`);
+  if (CONTACT.phone)    rows.push(`TEL;TYPE=CELL:${CONTACT.phone}`);
+  if (CONTACT.website)  rows.push(`URL:${CONTACT.website}`);
+  if (CONTACT.linkedin) rows.push(`X-SOCIALPROFILE;TYPE=linkedin:${CONTACT.linkedin}`);
+  if (CONTACT.note)     rows.push(`NOTE:${CONTACT.note}`);
+  rows.push("END:VCARD");
+
+  const blob = new Blob([rows.join("\r\n")], { type: "text/vcard;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href = url;
+  a.download = `${full.replace(/\s+/g, "-").toLowerCase()}.vcf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+</script>
+
+</body>
+</html>
