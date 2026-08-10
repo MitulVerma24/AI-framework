@@ -80,19 +80,6 @@
     100% { top:100%;  opacity:0; }
   }
 
-  /* Monogram — stands in for a photo. No image file needed. */
-  .badge{
-    width:78px; height:78px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    border:2px solid var(--signal);
-    background:rgba(224,163,46,.10);
-    font-family:var(--display); font-weight:800; font-size:27px;
-    letter-spacing:-.02em; color:var(--signal);
-    margin-bottom:22px;
-  }
-
-  /* Kept for later: if you ever add a square photo.jpg, swap the
-     .badge div in the HTML for <img class="avatar" src="photo.jpg" alt="Mitul Verma"> */
   .avatar{
     width:78px; height:78px; border-radius:50%;
     object-fit:cover; display:block;
@@ -114,18 +101,6 @@
   .role{ font-size:16px; color:rgba(245,243,238,.78); max-width:34ch; }
   .role em{ font-style:normal; color:var(--signal); }
 
-  .save{
-    display:inline-flex; align-items:center; gap:9px;
-    margin-top:26px; padding:14px 22px;
-    background:var(--signal); color:var(--ink);
-    font-family:var(--body); font-weight:500; font-size:15px;
-    border:0; border-radius:999px; cursor:pointer;
-    transition:transform .15s ease, filter .15s ease;
-  }
-  .save:hover{ filter:brightness(1.07); transform:translateY(-1px); }
-  .save:active{ transform:translateY(0); }
-  .save svg{ width:16px; height:16px; }
-
   /* ---------- SECTIONS ---------- */
   .sec{ padding:var(--pad); border-bottom:1px solid var(--line); }
   .sec:last-of-type{ border-bottom:0; }
@@ -139,23 +114,15 @@
     background:rgba(122,158,126,.14); color:#41603F;
   }
 
-  .links{ list-style:none; }
-  .links li{ border-top:1px solid var(--line); }
-  .links li:first-child{ border-top:0; }
-  .links a{
-    display:flex; align-items:baseline; gap:14px;
-    padding:17px 2px; text-decoration:none;
-    transition:padding-left .18s ease;
+  .email{
+    font-weight:500;
+    text-decoration:none;
+    border-bottom:2px solid var(--signal);
+    padding-bottom:1px;
+    word-break:break-word;
+    transition:color .18s ease;
   }
-  .links a:hover{ padding-left:8px; }
-  .links a:hover .where{ color:var(--signal); }
-  .links .what{ font-family:var(--mono); font-size:11px; letter-spacing:.14em;
-                text-transform:uppercase; color:var(--ink-soft); width:82px; flex:none; }
-  .links .where{ font-weight:500; transition:color .18s ease; word-break:break-word; }
-  .links .arrow{ margin-left:auto; color:var(--ink-soft); }
-
-  footer{ padding:var(--pad); background:var(--paper); }
-  footer .lbl{ font-size:10px; }
+  .email:hover{ color:var(--signal); }
 
   @media (prefers-reduced-motion: reduce){
     .beam{ display:none; }
@@ -170,23 +137,13 @@
   <header class="hero">
     <div class="beam"></div>
 
-    <div class="badge" aria-hidden="true">MV</div>
-
-    <span class="lbl">Hello — you scanned my code</span>
+    <img class="avatar" src="IMG_2366.jpeg" alt="Mitul Verma">
 
     <h1 class="name">Mitul<br>Verma</h1>
 
     <hr class="rule">
 
     <p class="role">Platform engineer at <em>Lilly</em>. Turning chaos into beautiful developer experiences.</p>
-
-    <button class="save" id="saveBtn" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 5v14M5 12h14"/>
-      </svg>
-      Save to contacts
-    </button>
   </header>
 
   <section class="sec">
@@ -207,62 +164,10 @@
 
   <section class="sec">
     <span class="lbl">Find me</span>
-    <ul class="links">
-      <li><a href="mailto:verma_mitul@lilly.com">
-        <span class="what">Email</span><span class="where">verma_mitul@lilly.com</span><span class="arrow">↗</span></a></li>
-
-      <!-- To add LinkedIn: delete this comment wrapper and put your real handle in both places.
-      <li><a href="https://linkedin.com/in/YOUR-HANDLE">
-        <span class="what">LinkedIn</span><span class="where">/YOUR-HANDLE</span><span class="arrow">↗</span></a></li>
-      -->
-    </ul>
+    <p><a class="email" href="mailto:verma_mitul@lilly.com">verma_mitul@lilly.com</a></p>
   </section>
 
-  <footer>
-    <span class="lbl">Last updated August 2026</span>
-  </footer>
-
 </div>
-
-<script>
-const CONTACT = {
-  firstName: "Mitul",
-  lastName:  "Verma",
-  title:     "Platform Engineer",
-  company:   "Eli Lilly and Company",
-  email:     "verma_mitul@lilly.com",
-  phone:     "",                        // add your number here if you want it shared
-  website:   "",                        // put your live page URL here once GitHub Pages is up
-  linkedin:  "",                        // e.g. "https://linkedin.com/in/your-handle"
-  note:      "We met by QR code."
-};
-
-document.getElementById("saveBtn").addEventListener("click", () => {
-  const full = [CONTACT.firstName, CONTACT.lastName].filter(Boolean).join(" ");
-  const rows = ["BEGIN:VCARD", "VERSION:3.0"];
-
-  rows.push(`N:${CONTACT.lastName};${CONTACT.firstName};;;`);
-  rows.push(`FN:${full}`);
-  if (CONTACT.company)  rows.push(`ORG:${CONTACT.company}`);
-  if (CONTACT.title)    rows.push(`TITLE:${CONTACT.title}`);
-  if (CONTACT.email)    rows.push(`EMAIL;TYPE=INTERNET,WORK:${CONTACT.email}`);
-  if (CONTACT.phone)    rows.push(`TEL;TYPE=CELL:${CONTACT.phone}`);
-  if (CONTACT.website)  rows.push(`URL:${CONTACT.website}`);
-  if (CONTACT.linkedin) rows.push(`X-SOCIALPROFILE;TYPE=linkedin:${CONTACT.linkedin}`);
-  if (CONTACT.note)     rows.push(`NOTE:${CONTACT.note}`);
-  rows.push("END:VCARD");
-
-  const blob = new Blob([rows.join("\r\n")], { type: "text/vcard;charset=utf-8" });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement("a");
-  a.href = url;
-  a.download = `${full.replace(/\s+/g, "-").toLowerCase()}.vcf`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-});
-</script>
 
 </body>
 </html>
